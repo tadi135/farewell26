@@ -3,7 +3,7 @@
 // ═══════════════════════════════════════════════════════
 
 // 🔧 Change to your deployed backend URL
-const API_BASE = "http://localhost:5000";
+const API_BASE = "https://farewell26.onrender.com";
 
 // Hardcoded admin credentials (change before deploying)
 const CREDS = { user: "admin", pass: "ece2026" };
