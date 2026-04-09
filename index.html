@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ECE Farewell Gallery 2026 🎓</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- ╔══════════════════════════════╗ -->
+  <!-- ║     POPUP INVITATION         ║ -->
+  <!-- ╚══════════════════════════════╝ -->
+  <div id="popup-overlay" class="popup-overlay">
+    <div class="popup-card">
+      <button class="popup-close" onclick="closePopup()" aria-label="Close">✕</button>
+
+      <div class="popup-stars">
+        <span class="star s1">✦</span>
+        <span class="star s2">✦</span>
+        <span class="star s3">✦</span>
+      </div>
+
+      <div class="popup-dept">Electronics & Communication Engineering</div>
+      <h1 class="popup-title">ECE Farewell<br/><em>2026</em> 🎓</h1>
+
+      <div class="popup-rule"></div>
+
+      <p class="popup-body">
+        We warmly invite you to celebrate our farewell event —
+        a collection of memories, laughter, and the bonds we built together.
+      </p>
+
+      <div class="popup-meta">
+        <div class="meta-item"><span class="meta-icon">📅</span><div><strong>Date</strong><span>April 25, 2026</span></div></div>
+        <div class="meta-item"><span class="meta-icon">📍</span><div><strong>Venue</strong><span>College Auditorium, Block A</span></div></div>
+      </div>
+
+      <div class="popup-actions">
+        <button class="btn-enter" onclick="closePopup()">Enter Gallery 📸</button>
+        <button class="btn-ghost" onclick="closePopup()">Maybe Later</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ╔══════════════════════════════╗ -->
+  <!-- ║         LIGHTBOX             ║ -->
+  <!-- ╚══════════════════════════════╝ -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+    <button class="lb-close" onclick="closeLightbox()">✕</button>
+    <div class="lb-inner">
+      <img id="lb-img" src="" alt="" />
+    </div>
+  </div>
+
+  <!-- ╔══════════════════════════════╗ -->
+  <!-- ║         HEADER               ║ -->
+  <!-- ╚══════════════════════════════╝ -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-mark">◈</span>
+        <div class="brand-text">
+          <span class="brand-name">ECE Farewell</span>
+          <span class="brand-year">Gallery · 2026</span>
+        </div>
+      </a>
+      <div class="header-right">
+        <div id="media-count" class="media-count"></div>
+        <a href="admin.html" class="btn-admin-link">Admin ↗</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ╔══════════════════════════════╗ -->
+  <!-- ║          HERO                ║ -->
+  <!-- ╚══════════════════════════════╝ -->
+  <section class="hero">
+    <div class="hero-glow g1"></div>
+    <div class="hero-glow g2"></div>
+    <div class="container hero-content">
+      <p class="hero-eyebrow">— Memories Forever —</p>
+      <h2 class="hero-heading">Every Photo Tells<br/><span>Our Story</span></h2>
+      <p class="hero-sub">Browse, relive and download the moments that made our ECE journey unforgettable.</p>
+    </div>
+    <div class="hero-scroll-hint">↓</div>
+  </section>
+
+  <!-- ╔══════════════════════════════╗ -->
+  <!-- ║         SEARCH               ║ -->
+  <!-- ╚══════════════════════════════╝ -->
+  <div class="search-bar-wrap">
+    <div class="container">
+      <div class="search-bar">
+        <span class="search-ico">⌕</span>
+        <input type="text" id="search-input" placeholder="Search by filename or index…" oninput="filterGallery()" />
+        <button id="clear-search" onclick="clearSearch()" style="display:none">✕</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ╔══════════════════════════════╗ -->
+  <!-- ║         GALLERY              ║ -->
+  <!-- ╚══════════════════════════════╝ -->
+  <main class="gallery-wrap container">
+
+    <!-- Loading -->
+    <div id="loading" class="state-loading">
+      <div class="loader-ring"></div>
+      <p>Fetching memories from Cloudinary…</p>
+    </div>
+
+    <!-- Error -->
+    <div id="error-state" class="state-msg" style="display:none">
+      <span>⚠️</span>
+      <p id="error-msg">Could not load gallery.</p>
+      <button onclick="loadGallery()">Try Again</button>
+    </div>
+
+    <!-- Empty search -->
+    <div id="empty-state" class="state-msg" style="display:none">
+      <span>🔍</span>
+      <p>No media matched your search.</p>
+      <button onclick="clearSearch()">Clear Search</button>
+    </div>
+
+    <!-- Grid -->
+    <div id="gallery-grid" class="gallery-grid"></div>
+
+  </main>
+
+  <!-- ╔══════════════════════════════╗ -->
+  <!-- ║          FOOTER              ║ -->
+  <!-- ╚══════════════════════════════╝ -->
+  <footer class="site-footer">
+    <p>Made with ❤️ &nbsp;·&nbsp; ECE Department &nbsp;·&nbsp; Farewell 2026</p>
+  </footer>
+
+  <!-- Toast -->
+  <div id="toast" class="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

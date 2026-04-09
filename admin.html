@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin — ECE Farewell Gallery 2026</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+</head>
+<body class="admin-body">
+
+  <!-- ╔══════════════════════════════╗ -->
+  <!-- ║       LOGIN SCREEN           ║ -->
+  <!-- ╚══════════════════════════════╝ -->
+  <div id="login-screen" class="admin-login">
+    <div class="login-box">
+      <div class="login-logo">🎓</div>
+      <h1 class="login-title">Admin Panel</h1>
+      <p class="login-sub">ECE Farewell Gallery 2026</p>
+
+      <div class="field">
+        <label>Username</label>
+        <input type="text" id="l-user" placeholder="admin" />
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <input type="password" id="l-pass" placeholder="••••••••" />
+      </div>
+      <div id="l-err" class="login-err"></div>
+      <button class="btn-primary full" onclick="doLogin()">Login →</button>
+    </div>
+  </div>
+
+  <!-- ╔══════════════════════════════╗ -->
+  <!-- ║       DASHBOARD              ║ -->
+  <!-- ╚══════════════════════════════╝ -->
+  <div id="dashboard" class="admin-dash hidden">
+
+    <!-- Sidebar -->
+    <aside class="aside">
+      <div class="aside-logo">
+        <span class="mark">◈</span>
+        <div>
+          <div class="al-name">Admin</div>
+          <div class="al-sub">ECE Gallery</div>
+        </div>
+      </div>
+
+      <nav class="aside-nav">
+        <button class="nav-btn on" id="nav-upload" onclick="switchTab('upload', this)">📤 Upload</button>
+        <button class="nav-btn"   id="nav-manage" onclick="switchTab('manage', this)">🗂️ Manage</button>
+        <a href="index.html" class="nav-btn" style="display:block;">← Gallery</a>
+      </nav>
+
+      <button class="aside-logout" onclick="doLogout()">Logout</button>
+    </aside>
+
+    <!-- Main content -->
+    <main class="admin-main">
+
+      <!-- ── UPLOAD TAB ──────────────────── -->
+      <section id="tab-upload">
+        <h2 class="panel-title">Upload Media</h2>
+
+        <div class="drop-zone" id="drop-zone"
+          ondragover="onDragOver(event)"
+          ondragleave="onDragLeave(event)"
+          ondrop="onDrop(event)"
+          onclick="document.getElementById('file-in').click()">
+          <input type="file" id="file-in" accept="image/*,video/*" onchange="onFilePick(event)" hidden/>
+
+          <div id="dz-placeholder">
+            <span class="dz-icon">📂</span>
+            <p class="dz-title">Drag & Drop photo or video here</p>
+            <p class="dz-hint">or click to browse • JPG · PNG · GIF · MP4 · MOV · WebM</p>
+          </div>
+
+          <div id="preview-wrap">
+            <div id="preview-media"></div>
+            <div class="prev-meta">
+              <span id="prev-name"></span>
+              <span id="prev-pill"></span>
+            </div>
+            <div class="prev-actions" onclick="event.stopPropagation()">
+              <button class="btn-outline" onclick="resetUpload()">✕ Remove</button>
+              <button class="btn-primary" id="upload-btn" onclick="doUpload()">⬆ Upload to Cloudinary</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="prog-wrap" class="prog-wrap" style="display:none">
+          <div class="prog-bar"><div id="prog-fill" class="prog-fill"></div></div>
+          <span id="prog-label">Uploading…</span>
+        </div>
+      </section>
+
+      <!-- ── MANAGE TAB ──────────────────── -->
+      <section id="tab-manage" style="display:none">
+        <div class="panel-row">
+          <h2 class="panel-title">Manage Media</h2>
+          <button class="btn-outline btn-sm" onclick="loadManageTable()">🔄 Refresh</button>
+        </div>
+
+        <div id="adm-loading" class="adm-loading" style="display:none">
+          <div class="loader-ring"></div><span>Loading from Cloudinary…</span>
+        </div>
+        <div id="adm-empty" class="adm-empty" style="display:none">
+          <span>📭</span><p>No media uploaded yet.</p>
+        </div>
+
+        <div id="table-wrap">
+          <table class="media-table">
+            <thead>
+              <tr>
+                <th>#</th><th>Preview</th><th>Public ID</th><th>Type</th>
+                <th>URL</th><th>Uploaded</th><th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="media-tbody"></tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast"></div>
+
+  <script src="admin.js"></script>
+</body>
+</html>
