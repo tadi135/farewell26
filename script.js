@@ -4,7 +4,7 @@
 // ═══════════════════════════════════════════════════════
 
 // 🔧 Change to your deployed Render/Railway backend URL
-const API_BASE = "https://farewell-2.onrender.com";
+const API_BASE = "https://farewell26.onrender.com";
 
 // Cache all fetched items for client-side search
 let allItems = [];
